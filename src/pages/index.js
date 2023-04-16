@@ -16,7 +16,12 @@ export default function Home({data, piedata}) {
 
   var byTypePercent = piedata.result.map((item) => item.percent)
   var byTypeTitle = piedata.result.map((item) => item.title)
-
+  
+  console.log(piedata.result[2])
+  var spinning = piedata.result[0].month
+  var trans = piedata.result[1].month
+  var carding = piedata.result[2].month
+  var heatCool = piedata.result[3].month
 
   return (
     <>
@@ -48,7 +53,12 @@ export default function Home({data, piedata}) {
 
         <div className="flex max-w-[1145px] mx-auto pl-[15px] pr-[20px]">
 
-        <StackedBar/>
+        <StackedBar
+        spinning={spinning}
+        trans={trans}
+        carding={carding}
+        heatCool={heatCool}
+        />
 
 
             <PieChart

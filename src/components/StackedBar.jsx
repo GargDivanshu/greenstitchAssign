@@ -4,29 +4,29 @@ import Chart from 'chart.js/auto';
 import { useState } from 'react';
 import {GoGraph} from 'react-icons/go'
 
-const StackedBar = () => {
+const StackedBar = ({spinning, trans, heatCool, carding}) => {
 
     const [chartData, setChartData] = useState({
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         datasets: [
           {
             label: 'Spinning',
-            data: [12, 19, 3, 5, 2, 3],
+            data: spinning,
             backgroundColor: '#57CC78',
           },
           {
             label: 'Transportation',
-            data: [7, 11, 5, 8, 3, 7],
+            data: trans,
             backgroundColor: '#55DBDB',
           },
           {
             label: 'Carding',
-            data: [12, 19, 3, 5, 2, 3],
+            data: carding,
             backgroundColor: '#E2FF32',
           },
           {
             label: 'Heating & Cooling',
-            data: [7, 11, 5, 8, 3, 7],
+            data: heatCool,
             backgroundColor: '#FEC102',
           },
         ],

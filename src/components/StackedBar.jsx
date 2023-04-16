@@ -7,7 +7,7 @@ import {GoGraph} from 'react-icons/go'
 const StackedBar = ({spinning, trans, heatCool, carding}) => {
 
     const [chartData, setChartData] = useState({
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July'],
         datasets: [
           {
             label: 'Spinning',
@@ -45,7 +45,7 @@ const StackedBar = ({spinning, trans, heatCool, carding}) => {
 
       
       return (
-        <div className="bg-white p-2 px-10 my-2 rounded-lg mx-[16px] w-[610px]">
+        <div className="bg-white p-2 px-14 my-2 rounded-lg mr-8 ml-4 w-[640px]">
         <div className="flex justify-between">
         <h1
         className="font-[700] text-[24px]"

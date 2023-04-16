@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './../components/Navbar';
+import Sider from './../components/Sider';
 import Search from './../components/Search';
 import Card from './../components/Card';
 import PieChart from './../components/Pie';
@@ -33,7 +33,7 @@ export default function Home({data, piedata}) {
       </Head>
       
       <div className=" w-screen min-h-screen max-h-full flex">
-        <Navbar/>
+        <Sider/>
         <div className="w-screen h-[66px]">
         <Search/>
         <div className="mx-auto grid grid-cols-4 gap-1 mt-[22px] max-w-[1145px] pl-[30px] pr-[20px]">

@@ -1,5 +1,5 @@
 import React from 'react'
-import {IoMdArrowDropup} from 'react-icons/io'
+import {IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 import {FiLifeBuoy, FiLogOut} from 'react-icons/fi'
 import {AiOutlineFolder} from 'react-icons/ai'
 import {TfiWorld} from 'react-icons/tfi'
@@ -7,7 +7,12 @@ import {GiSettingsKnobs} from 'react-icons/gi'
 
 
 
-const Navbar = () => {
+const Sider = () => {
+
+  const [dashboard, setDashboard] = React.useState(true)
+  const [help, setHelp] = React.useState(false)
+  const [file, setFile] = React.useState(false)
+
   return (
     <div className="w-[232px] bg-[#FFF] min-h-screen max-h-full relative pt-[24px]">
        
@@ -24,7 +29,9 @@ const Navbar = () => {
        </h1>
 
        <div className="mt-[36px] py-[12px] px-[20px]">
-          <div className="flex justify-between">
+          <div 
+          onClick={() => setDashboard(!dashboard)}
+          className="flex justify-between">
           <div className="flex">
               <img 
                 className="w-[20px] h-[20px] text-black m-auto mx-[1px]"
@@ -33,21 +40,28 @@ const Navbar = () => {
               />
 
               <div
-              className="text-[14px] font-[600] mx-1"
+              className="text-[14px] font-[600] mx-1 text-[#5F6980] hover:text-black focus:text-black cursor-pointer"
               >Dashboard</div>
 
           </div>
 
           <div>
-                <IoMdArrowDropup
+                {
+                  (dashboard) ?
+                  <IoMdArrowDropdown
                 fontSize={25}
                     className="my-auto"
-                />
+                /> :
+                  <IoMdArrowDropup
+                fontSize={25}
+                    className="my-auto"
+                />  
+                }
           </div>   
           </div>
 
 
-          <div className="mb-[32px] mt-[8px]">
+          <div className={`mb-[32px] mt-[8px] ${(dashboard) ? "" : "hidden"}`}>
               <h1 className="text-[14px] font-[600] cursor-pointer pl-[20px] text-[#5F6980] focus:text-black hover:text-black mb-[12px]">Records</h1>
 
               <h1 className="text-[14px] font-[600] cursor-pointer pl-[20px] text-[#5F6980] focus:text-black hover:text-black mb-[12px]">Reports</h1>
@@ -58,11 +72,13 @@ const Navbar = () => {
           </div>
 
 
-          <h1 className=" pl-[20px] text-[#9D9FA1] text-[12px] font-[600]">
+          <h1 className=" pl-[20px] text-[#9D9FA1] text-[12px] font-[600] mt-[12px]">
         PAGES
        </h1>
 
-       <div className="flex justify-between my-[12px] hover:text-black cursor-pointer">
+       <div 
+       onClick={() => setHelp(!help)}
+       className="flex justify-between my-[12px] hover:text-black cursor-pointer">
           <div className="flex">
               <FiLifeBuoy
                 fontSize={20}
@@ -76,14 +92,23 @@ const Navbar = () => {
           </div>
 
           <div>
-                <IoMdArrowDropup
+          {
+                  (help) ?
+                  <IoMdArrowDropdown
                 fontSize={25}
-                    className="my-auto text-[#5F6980] hover:text-black"
-                />
+                    className="my-auto"
+                /> :
+                  <IoMdArrowDropup
+                fontSize={25}
+                    className="my-auto"
+                />  
+                }
           </div>   
           </div>
 
-          <div className="flex justify-between my-[12px] hover:text-black cursor-pointer">
+          <div 
+          onClick={() => setFile(!file)}
+          className="flex justify-between my-[12px] hover:text-black cursor-pointer">
           <div className="flex">
               <AiOutlineFolder
                 fontSize={20}
@@ -97,10 +122,17 @@ const Navbar = () => {
           </div>
 
           <div>
-                <IoMdArrowDropup
+          {
+                  (file) ?
+                  <IoMdArrowDropdown
                 fontSize={25}
-                    className="my-auto text-[#5F6980] hover:text-black"
-                />
+                    className="my-auto"
+                /> :
+                  <IoMdArrowDropup
+                fontSize={25}
+                    className="my-auto"
+                />  
+                }
           </div>   
           </div>
 
@@ -125,4 +157,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Sider

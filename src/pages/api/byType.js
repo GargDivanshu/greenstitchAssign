@@ -3,7 +3,7 @@ import connection from './../../../middleware/mongoose';
 
 async function handler(req, resp){
 
-    const {title, percent} = req.body;
+    const {title, percent, month} = req.body;
 
     if(req.method === "POST"){
          
@@ -11,7 +11,7 @@ async function handler(req, resp){
         const db = client.db("test")
         const collection = db.collection("byType")
 
-        const result = await collection.insertOne({title, percent})
+        const result = await collection.insertOne({title, percent, month})
         client.close()
         return resp.status(200).json({
             result

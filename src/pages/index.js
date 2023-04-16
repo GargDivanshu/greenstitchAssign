@@ -2,10 +2,22 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Navbar from './../components/Navbar';
+import Search from './../components/Search';
+import Card from './../components/Card';
+import PieChart from './../components/Pie';
+import StackedBar from './../components/StackedBar';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({data, piedata}) {
+
+
+
+  var byTypePercent = piedata.result.map((item) => item.percent)
+  var byTypeTitle = piedata.result.map((item) => item.title)
+
+
   return (
     <>
       <Head>
@@ -14,101 +26,60 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
+      
+      <div className=" w-screen min-h-screen max-h-full flex">
+        <Navbar/>
+        <div className="w-screen h-[66px]">
+        <Search/>
+        <div className="mx-auto grid grid-cols-4 gap-1 mt-[22px] max-w-[1145px] pl-[30px] pr-[20px]">
+          {
+            data.result.map((item) => {
+              return (
+                <Card
+                key={item.heading} 
+                heading={item.heading}
+                data={item.data}
+                netChange={item.netChange}
+                />
+              )
+            })
+            }
         </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+        <div className="flex max-w-[1145px] mx-auto pl-[15px] pr-[20px]">
+
+        <StackedBar/>
+
+
+            <PieChart
+            piedata={byTypePercent}
+            piedataTitle={byTypeTitle}
+            />
         </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
         </div>
-      </main>
+      </div>
     </>
   )
 }
+
+
+export async function getServerSideProps() {
+ 
+  const res = await fetch(`http://localhost:3000/api/data`)
+  const data = await res.json()
+
+  const resPieData = await fetch(`http://localhost:3000/api/byType`)
+  const piedata = await resPieData.json()
+  
+  return { props: { data, piedata } }
+}
+
+
+// export async function getServerSideProps() {
+ 
+//   const res = await fetch(`http://localhost:3000/api/byType`)
+//   const piedata = await res.json()
+
+  
+//   return { props: { piedata } }
+// }

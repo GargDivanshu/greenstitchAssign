@@ -65,21 +65,14 @@ export default function Home({data, piedata}) {
 
 export async function getServerSideProps() {
  
-  const res = await fetch(`http://localhost:3000/api/data`)
+  const res = await fetch(`${process.env.PORT}/api/data`)
   const data = await res.json()
 
-  const resPieData = await fetch(`http://localhost:3000/api/byType`)
+  const resPieData = await fetch(`${process.env.PORT}/api/byType`)
   const piedata = await resPieData.json()
   
   return { props: { data, piedata } }
 }
 
 
-// export async function getServerSideProps() {
- 
-//   const res = await fetch(`http://localhost:3000/api/byType`)
-//   const piedata = await res.json()
 
-  
-//   return { props: { piedata } }
-// }

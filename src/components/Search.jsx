@@ -25,10 +25,13 @@ const Search = () => {
        </div>
 
        <div className="flex w-1/5 justify-between px-3">
+       <div className="flex relative">
          <AiOutlineBell
           fontSize={20}
           className="my-auto"
          />
+         <div className="absolute w-[8px] h-[8px] rounded-full bg-red-500 animate-ping right-0 top-2"></div>
+         </div>
 
          <AiOutlineAppstore
           fontSize={20}

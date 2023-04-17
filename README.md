@@ -10,6 +10,13 @@ It shows the pollution in the units of Ton to users
 ## byType-
 It shows the data of pollution along the period of 6 Months (in the form of array) and also has percentage wise data of different metrics like Spinning, Transortation etc
 
+## Features
+- Data is completely powered by DB
+- The sidebar has clickable options which show sub-options present within button like for Dashboard we have Record, Report, Analyse & Return.
+- The notification icon in Navbar has Ping animation.
+- Charts used have tooltip helping user to gain better insight
+- The pollution chart showing data in Metric tons will show the data in RED, GRAY, GREEN, color depending upon the net change in the data as compared to previous datapoint, which can be later on calculated from the algorithm which Company wants
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

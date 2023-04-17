@@ -1,3 +1,16 @@
+## This app is built on MongoDB and NextJS 
+
+The data of the charts come from DB and is fetched via API built. 
+
+The data is stored in two different ways, one is 'data' and the other is 'byType'. 
+
+## data-
+It shows the pollution in the units of Ton to users
+
+## byType-
+It shows the data of pollution along the period of 6 Months (in the form of array) and also has percentage wise data of different metrics like Spinning, Transortation etc
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

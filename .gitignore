@@ -37,3 +37,9 @@ next-env.d.ts
 
 # env
 .env
+
+
+#MONGODB_URI=mongodb+srv://divanshu:divanshu@cluster0.p13yxtc.mongodb.net/test
+
+#PORT=http://localhost:3000
+# https://greenstitch-assign.vercel.app
